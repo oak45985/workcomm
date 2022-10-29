@@ -1,13 +1,23 @@
 import React from 'react';
 
-const UserList = ({ username, email, picture }) => {
+const UserList = ({ users }) => {
+
+    if(!users.length) {
+        return <h3>No users yet!</h3>;
+    }
     
     return (
         <div>
-            <h4>
-                {username}
-            </h4>
-            <p>email: {email} + picture: {picture} </p>
+            {users && users.map(user => (
+                <div key={user._id}>
+                    <h4>
+                        {user.username}
+                    </h4>
+                    <p>
+                        email: {user.email} + picture: {user.picture} 
+                    </p>
+                </div>
+            ))}
         </div>
     )
 }

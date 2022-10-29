@@ -10,9 +10,7 @@ const Home = () => {
 
     const { data } = useQuery(QUERY_USERS);
 
-    const username = data?.username || [];
-    const email = data?.email || [];
-    const picture = data?.picture || [];
+    const users = data?.users || [];
 
     const loggedIn = Auth.loggedIn();
 
@@ -27,10 +25,7 @@ const Home = () => {
                     </div>
                 ): null}
                 <div>
-                    <UserList 
-                        username={username}
-                        email={email}
-                        picture={picture}
+                    <UserList users={users}
                     />
                 </div>
             </div>

@@ -25,6 +25,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
+        messages: [Message]
     }
 
     type Auth {
@@ -36,6 +37,11 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, picture: String): Auth
     }
+
+    type Subscription {
+        postCreated: Post
+    }
+
 `;
 
 module.exports = typeDefs;

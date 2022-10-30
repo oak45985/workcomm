@@ -8,9 +8,17 @@ const typeDefs = gql`
         username: String
         email: String
         picture: String
+        messages: [Message]
+        status: String
+    }
 
-
-
+    type Message {
+        _id: ID
+        content: String
+        from: [User]
+        to: [User]
+        socketid: String
+        createdAt: String
     }
 
     type Query {

@@ -3,6 +3,8 @@ const { gql } = require('apollo-server-express');
 
 // insert User items for messages & tasks
 const typeDefs = gql`
+    
+
     type User {
         _id: ID
         username: String

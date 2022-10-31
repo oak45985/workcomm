@@ -9,7 +9,7 @@ const taskSchema = new Schema(
         },
         username: {
             type: String,
-            required: True
+            required: true
         },
         createdTaskAt: {
             type: Date,

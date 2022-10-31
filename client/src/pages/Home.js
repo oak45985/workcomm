@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import Auth from '../utils/auth';
 import { QUERY_ME_LITE, QUERY_USERS } from '../utils/queries';
 import UserList from '../components/UserList';
+import TaskInput from '../components/TaskInput';
 
 const Home = () => {
     
@@ -27,6 +28,9 @@ const Home = () => {
                 <div>
                     <UserList users={users}
                     />
+                </div>
+                <div>
+                    <TaskInput />
                 </div>
             </div>
         </main>

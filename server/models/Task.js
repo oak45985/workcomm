@@ -12,15 +12,14 @@ const taskSchema = new Schema(
             required: true
         },
         createdTaskAt: {
-            type: Date,
-            default: Date.now
+            type: String,
         },
         taskContent: {
             type: String
         },
         taskList: [listSchema],
         taskDue: {
-            type: Date
+            type: String
         },
         teamMembers: [
             {

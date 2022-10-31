@@ -77,8 +77,8 @@ export const QUERY_TASK = gql`
 `
 
 export const QUERY_TASKS = gql`
-    query tasks($username: String) {
-        tasks(username: $username) {
+    query tasks {
+        tasks {
             _id
             taskTitle
             username

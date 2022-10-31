@@ -10,8 +10,7 @@ const listSchema = new Schema(
             required: true
         },
         listCreatedAt: {
-            type: Date,
-            default: Date.now
+            type: String
         },
     },
     {

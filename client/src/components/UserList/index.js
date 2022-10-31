@@ -14,7 +14,7 @@ const UserList = ({ users }) => {
                         {user.username}
                     </h4>
                     <p>
-                        email: {user.email} + picture: {user.picture} 
+                        email: {user.email} + picture: {user.picture}
                     </p>
                 </div>
             ))}

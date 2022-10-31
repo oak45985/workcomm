@@ -8,9 +8,6 @@ const typeDefs = gql`
         username: String
         email: String
         picture: String
-
-
-
     }
 
     type Query {

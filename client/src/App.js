@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, from } from '@apollo/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { onError } from "@apollo/client/link/error";
-import { Routes, Route } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import Nav from './components/Nav'
 import Login from './pages/Login';
@@ -40,23 +40,20 @@ const client = new ApolloClient({
 
 function App() {
   return (
+    <>
     <ApolloProvider client={client}>
-      <div>
-        <header>
-          <h1>
-            <a href='/'>Work Comm</a>
-          </h1>
+      <Router>
+        <>
           <Nav />
-        </header>
-      </div>
-        <div>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
           </Routes>
-        </div>
+          </>
+        </Router>
     </ApolloProvider>
+    </>
   );
 }
 

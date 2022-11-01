@@ -10,6 +10,7 @@ const Nav = () => {
     }
 
     return(
+        <>
         <nav>
             <ul>
                 <li>
@@ -33,6 +34,7 @@ const Nav = () => {
                 )}
             </ul>
         </nav>
+        </>
     )
 }
 

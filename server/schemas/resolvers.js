@@ -46,17 +46,15 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addTask: async (parent, args, context) => {
+        addTask: async (parent, { body }, context) => {
             if (context.user) {
-                const task = await Task.create({ ...args, username: context.user.username });
-
-                await User.findByIdAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { tasks: task._id } },
-                    { new: true }
-                );
+                    { $addToSet: { tasks: body }},
+                    { new: true}
+                    ).populate('tasks');
 
-                return task;
+                return updatedUser;
             }
             throw new AuthenticationError('Please login to create a task');
         }

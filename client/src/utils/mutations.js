@@ -28,8 +28,8 @@ export const ADD_USER = gql`
 
 //Task Items
 export const ADD_TASK = gql`
-    mutation addTask($taskTitle: String!, $taskContent: String!, $taskDue: String!) {
-        addTask(taskTitle: $taskTitle, taskContent: $taskContent, taskDue: $taskDue) {
+    mutation addTask($body: taskInput!) {
+        addTask(body: $body) {
             _id
             taskTitle
             username

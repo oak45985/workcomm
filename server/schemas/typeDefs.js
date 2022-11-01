@@ -25,6 +25,7 @@ const typeDefs = gql`
         username: String
         email: String
         picture: String
+        tasks: [Task]
     }
 
     type Query {
@@ -41,7 +42,15 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, picture: String): Auth
-        addTask(taskTitle: String!, taskContent: String!, taskDue: String!): Task
+        addTask(body: taskInput): User
+    }
+
+    input taskInput {
+        taskTitle: String
+        username: String
+        createdTaskAt: String
+        taskContent: String
+
     }
 `;
 

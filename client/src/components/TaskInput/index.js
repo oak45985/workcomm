@@ -1,30 +1,14 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
-import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
+import Auth from '../../utils/auth'
+// import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
 
 const TaskInput = () => {
-    const [addTask, { error }] = useMutation(ADD_TASK, {
-        update(cache, { data: { addTask }}) {
-            
-            try {
-                const { me } = cache.readQuery({ query: QUERY_ME_LITE });
-                cache.writeQuery({
-                    query: QUERY_ME_LITE,
-                    data: { me: { ...me, tasks: [...me.tasks, addTask] } },
-                });
-            } catch (e) {
-                console.warn('ok')
-            }
 
-            const { tasks } = cache.readQuery({ query: QUERY_TASKS });
+    const [taskData, setTaskData] = useState([]);
 
-            cache.writeQuery({
-                query: QUERY_TASKS,
-                data: { tasks: [addTask, ...tasks] }
-            });
-        }
-    });
+    const [addTask] = useMutation(ADD_TASK);
 
     const [formState, setFormState] = useState({ taskTitle: '', taskContent: '', taskDue: '' });
 
@@ -35,16 +19,38 @@ const TaskInput = () => {
             ...formState,
             [name]: value
         });
+
+        const { items } = formState;
+
+        try {
+            const taskInput = items.map((task) => ({
+                taskId: task.id,
+                taskTitle: task.taskTitle,
+                taskContent: task.taskContent,
+                taskDue: task.taskDue
+            }));
+
+            setTaskData(taskInput);      
+        } catch (err) {
+            console.log(err);
+        }
     };
 
-    const handleTaskFormSubmit = async event => {
-        event.preventDefault();
+    const handleTaskFormSubmit = async (taskId) => {
+
+        const taskToSave = taskData.find((task) => task.taskId === taskId);
+        
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
 
         try {
             await addTask({
-                variables: { ...formState }
+                variables: { body: { ...taskToSave } }
             });
-            setFormState('');
+            console.log(formState);
         } catch (e) {
             console.error(e);
         }
@@ -81,7 +87,7 @@ const TaskInput = () => {
                             Submit
                         </button>
                     </form>
-                    {error && <div>Couldn't upload task</div>}
+                    {/* {error && <div>Couldn't upload task</div>} */}
                 </div>
             </div>
         </main>

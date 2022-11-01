@@ -24,19 +24,20 @@ const TaskInput = () => {
 
         try {
             const taskInput = items.map((task) => ({
-                taskId: task.id,
                 taskTitle: task.taskTitle,
                 taskContent: task.taskContent,
                 taskDue: task.taskDue
             }));
 
+            console.log(taskInput);
             setTaskData(taskInput);      
         } catch (err) {
             console.log(err);
         }
     };
 
-    const handleTaskFormSubmit = async (taskId) => {
+    const handleTaskFormSubmit = async ( event, taskId) => {
+        event.preventDefault();
 
         const taskToSave = taskData.find((task) => task.taskId === taskId);
         

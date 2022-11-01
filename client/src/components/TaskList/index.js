@@ -9,12 +9,15 @@ const TaskList = ({ tasks }) => {
     return (
         <div>
             {tasks && tasks.map(task => {
+
+                return(
                 <div key={task._id}>
                     <p>{task.taskTitle}</p>
                     <p>{task.username}</p>
                     <p>{task.createdTaskAt}</p>
                     <p>{task.taskContent}</p>
                 </div>
+                );
             })}
         </div>
     )

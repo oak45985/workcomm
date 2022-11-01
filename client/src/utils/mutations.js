@@ -31,20 +31,17 @@ export const ADD_TASK = gql`
     mutation addTask($body: taskInput!) {
         addTask(body: $body) {
             _id
-            taskTitle
             username
-            createdTaskAt
-            taskContent
-            taskList {
+            email
+            picture
+            tasks {
                 _id
-                listContent
+                taskTitle
                 username
-                listCreatedAt
+                createdTaskAt
+                taskContent
             }
-            teamMembers {
-                _id
-                username
-            }
-        }
+    
+        }   
     }
 `

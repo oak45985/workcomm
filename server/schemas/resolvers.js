@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Task } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -22,6 +22,10 @@ const resolvers = {
             return User.findOne({ username })
                 .select('-__v -password')
                 .populate('tasks');
+        },
+        tasks: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Task.find(params).sort({ createdTaskAt: -1 });
         }
     },
     Mutation: {
@@ -46,15 +50,17 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addTask: async (parent, { body }, context) => {
+        addTask: async (parent, args, context) => {
             if (context.user) {
-                const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
-                    { $addToSet: { tasks: body }},
-                    { new: true}
-                    ).populate('tasks');
+                const task = await Task.create({ ...args, username: context.user.username });
 
-                return updatedUser;
+                 await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { tasks: task._id }},
+                    { new: true}
+                );
+
+                return task;
             }
             throw new AuthenticationError('Please login to create a task');
         }

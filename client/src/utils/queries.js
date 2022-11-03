@@ -8,6 +8,14 @@ export const QUERY_USER = gql`
             username
             email
             picture
+            tasks {
+                _id
+                taskTitle
+                username
+                createdTaskAt
+                taskContent
+                taskDue
+            }
         }
     }
 `;
@@ -38,16 +46,7 @@ export const QUERY_ME_LITE = gql`
                 username
                 createdTaskAt
                 taskContent
-                taskList {
-                    _id
-                    listContent
-                    username
-                    listCreatedAt
-                }
-                teamMembers {
-                    _id
-                    username
-                }
+                taskDue
             }
         }
     }
@@ -62,38 +61,20 @@ export const QUERY_TASK = gql`
             username
             createdTaskAt
             taskContent
-            taskList {
-                _id
-                listContent
-                username
-                listCreatedAt
-            }
-            teamMembers {
-                _id
-                username
-            }
+            taskDue
         }
     }
 `
 
 export const QUERY_TASKS = gql`
-    query tasks {
-        tasks {
+    query tasks($username: String) {
+        tasks(username: $username) {
             _id
             taskTitle
             username
             createdTaskAt
             taskContent
-            taskList {
-                _id
-                listContent
-                username
-                listCreatedAt
-            }
-            teamMembers {
-                _id
-                username
-            }
+            taskDue
         }
     }
 `

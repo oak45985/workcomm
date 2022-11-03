@@ -1,61 +1,105 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
-import Auth from '../../utils/auth'
-// import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
+import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
 
 const TaskInput = () => {
 
-    const [taskData, setTaskData] = useState([]);
+    const [addTask] = useMutation(ADD_TASK, {
+        update(cache, { data: { addTask }}) {
+            try {
+                const { me } = cache.readQuery({ query: QUERY_ME_LITE });
+                cache.writeQuery({
+                    query: QUERY_ME_LITE,
+                    data: { me: { ...me, tasks: [...me.tasks, addTask] } },
+                });
+            } catch (e) {
+                console.log("ok")
+            }
 
-    const [addTask] = useMutation(ADD_TASK);
+            const { tasks } = cache.readyQuery({ query: QUERY_TASKS });
 
-    const [formState, setFormState] = useState({ taskTitle: '', taskContent: '', taskDue: '' });
-
-    const updateChange = (event) => {
-        const { name, value } = event.target;
-
-        setFormState({
-            ...formState,
-            [name]: value
-        });
-
-        const { items } = formState;
-
-        try {
-            const taskInput = items.map((task) => ({
-                taskTitle: task.taskTitle,
-                taskContent: task.taskContent,
-                taskDue: task.taskDue
-            }));
-
-            console.log(taskInput);
-            setTaskData(taskInput);      
-        } catch (err) {
-            console.log(err);
+            cache.writeQuery({
+                query: QUERY_TASKS,
+                data: { tasks: [addTask, ...tasks] }
+            });
         }
+    });
+
+    const [formData, setFormData] = useState({ taskTitle: '', taskContent: '', taskDue: ''});
+
+    const updateChange = event => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
-    const handleTaskFormSubmit = async ( event, taskId) => {
+    const handleTaskFormSubmit = async event => {
         event.preventDefault();
 
-        const taskToSave = taskData.find((task) => task.taskId === taskId);
-        
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-        if (!token) {
-            return false;
-        }
-
-        try {
+        try{
             await addTask({
-                variables: { body: { ...taskToSave } }
+                variables: { ...formData }
             });
-            console.log(formState);
+
+            formData('');
         } catch (e) {
-            console.error(e);
+            console.log(e);
         }
-    };
+    }
+
+    // const [taskData, setTaskData] = useState([]);
+
+    // const [addTask] = useMutation(ADD_TASK);
+
+    // const [formState, setFormState] = useState({ taskTitle: '', taskContent: '', taskDue: '' });
+
+    // const updateChange = (event) => {
+    //     const { name, value } = event.target;
+
+    //     setFormState({
+    //         ...formState,
+    //         [name]: value
+    //     });
+
+    //     const { items } = formState;
+
+    //     try {
+    //         const taskInput = items.map((task) => ({
+    //             taskTitle: task.taskTitle,
+    //             taskContent: task.taskContent,
+    //             taskDue: task.taskDue
+    //         }));
+
+    //         console.log(taskInput);
+    //         setTaskData(taskInput);      
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    // const handleTaskFormSubmit = async ( event, taskId) => {
+    //     event.preventDefault();
+
+    //     const taskToSave = taskData.find((task) => task.taskId === taskId);
+        
+    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    //     if (!token) {
+    //         return false;
+    //     }
+
+    //     try {
+    //         await addTask({
+    //             variables: { body: { ...taskToSave } }
+    //         });
+    //         console.log(formState);
+    //     } catch (e) {
+    //         console.error(e);
+    //     }
+    // };
 
     return (
         <main>
@@ -67,21 +111,21 @@ const TaskInput = () => {
                             name='taskTitle'
                             placeholder='Your Tasks Title'
                             id='taskTitle'
-                            value={formState.taskTitle}
+                            value={formData.taskTitle}
                             onChange={updateChange}
                         />
                         <textarea
                             name='taskContent'
                             placeholder="A short description of the task"
                             id='taskContent'
-                            value={formState.taskContent}
+                            value={formData.taskContent}
                             onChange={updateChange}
                         />
                         <input
                             name='taskDue'
                             placeholder='12/1/2022'
                             id='taskDue'
-                            value={formState.taskDue}
+                            value={formData.taskDue}
                             onChange={updateChange}
                         />
                         <button type='submit'>

@@ -1,33 +1,39 @@
 const { Schema, model } = require('mongoose');
-const listSchema = require('./List');
+// const listSchema = require('./List');
+const dateFormat = require('../utils/dateFormat'); 
 
 const taskSchema = new Schema(
     {
         taskTitle: {
             type: String,
-            required: true
+            required: true,
+            minlength: 2,
+            maxlength: 75
         },
         username: {
             type: String,
             required: true
         },
         createdTaskAt: {
-            type: String,
+            type: Date,
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
         },
         taskContent: {
             type: String
         },
-        taskList: [listSchema],
+        // taskList: [listSchema],
         taskDue: {
             type: String
         },
-        teamMembers: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }
-        ],
-    },
+        // teamMembers: [
+        //     {
+        //         type: Schema.Types.OjectId,
+        //         ref: 'User'
+        //     }
+        // ]
+
+        },
     {
         toJSON: {
             getters: true

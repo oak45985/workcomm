@@ -9,8 +9,7 @@ const typeDefs = gql`
         username: String
         createdTaskAt: String
         taskContent: String
-        taskList: [List]
-        teamMembers: [User]
+        taskDue: String
     }
 
     type List {
@@ -32,6 +31,8 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
+        tasks(username: String): [Task]
+        task: Task
     }
 
     type Auth {
@@ -42,15 +43,7 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, picture: String): Auth
-        addTask(body: taskInput): User
-    }
-
-    input taskInput {
-        taskTitle: String
-        username: String
-        createdTaskAt: String
-        taskContent: String
-
+        addTask(taskTitle: String!, taskContent: String, taskDue: String): Task
     }
 `;
 

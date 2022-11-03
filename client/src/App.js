@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, from } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache, from } from '@apollo/client';
+import { createHttpLink } from '@apollo/client/link/http';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { onError } from "@apollo/client/link/error";
 import { setContext } from '@apollo/client/link/context';
@@ -8,6 +9,7 @@ import Nav from './components/Nav'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -49,6 +51,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
+            <Route path='/profile' element={<Profile />} />
           </Routes>
           </>
         </Router>

@@ -18,6 +18,7 @@ const Nav = () => {
                 </li>
                 {Auth.loggedIn() ? (
                     <>
+                        <Link to="/profile">Profile</Link>
                         <a href='/' onClick={logout}>
                             Logout
                         </a>

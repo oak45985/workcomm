@@ -9,13 +9,13 @@ const TaskList = ({ tasks }) => {
     return (
         <div>
             {tasks && tasks.map(task => {
-
                 return(
                 <div key={task._id}>
-                    <p>{task.taskTitle}</p>
-                    <p>{task.username}</p>
+                    <h2>{task.taskTitle}</h2>
+                    <h3>{task.username}</h3>
                     <p>{task.createdTaskAt}</p>
                     <p>{task.taskContent}</p>
+                    <p>This task will be due: {task.taskDue}</p>
                 </div>
                 );
             })}

@@ -50,57 +50,6 @@ const TaskInput = () => {
         }
     }
 
-    // const [taskData, setTaskData] = useState([]);
-
-    // const [addTask] = useMutation(ADD_TASK);
-
-    // const [formState, setFormState] = useState({ taskTitle: '', taskContent: '', taskDue: '' });
-
-    // const updateChange = (event) => {
-    //     const { name, value } = event.target;
-
-    //     setFormState({
-    //         ...formState,
-    //         [name]: value
-    //     });
-
-    //     const { items } = formState;
-
-    //     try {
-    //         const taskInput = items.map((task) => ({
-    //             taskTitle: task.taskTitle,
-    //             taskContent: task.taskContent,
-    //             taskDue: task.taskDue
-    //         }));
-
-    //         console.log(taskInput);
-    //         setTaskData(taskInput);      
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
-
-    // const handleTaskFormSubmit = async ( event, taskId) => {
-    //     event.preventDefault();
-
-    //     const taskToSave = taskData.find((task) => task.taskId === taskId);
-        
-    //     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    //     if (!token) {
-    //         return false;
-    //     }
-
-    //     try {
-    //         await addTask({
-    //             variables: { body: { ...taskToSave } }
-    //         });
-    //         console.log(formState);
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // };
-
     return (
         <main>
             <div>

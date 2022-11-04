@@ -5,6 +5,7 @@ const listSchema = new Schema(
     {
         listContent: {
             type: String,
+            required: true
         },
         username: {
             type: String,

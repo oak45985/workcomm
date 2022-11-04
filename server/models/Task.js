@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-// const listSchema = require('./List');
+const listSchema = require('./List');
 const dateFormat = require('../utils/dateFormat'); 
 
 const taskSchema = new Schema(
@@ -22,7 +22,7 @@ const taskSchema = new Schema(
         taskContent: {
             type: String
         },
-        // taskList: [listSchema],
+        lists: [listSchema],
         taskDue: {
             type: String
         },

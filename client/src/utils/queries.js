@@ -15,6 +15,13 @@ export const QUERY_USER = gql`
                 createdTaskAt
                 taskContent
                 taskDue
+                lists {
+                    _id
+                    listContent
+                    username
+                    listCreatedAt
+                    
+                }
             }
         }
     }
@@ -47,6 +54,12 @@ export const QUERY_ME_LITE = gql`
                 createdTaskAt
                 taskContent
                 taskDue
+                lists {
+                    _id
+                    listContent
+                    username
+                    listCreatedAt
+                }
             }
         }
     }
@@ -62,6 +75,12 @@ export const QUERY_TASK = gql`
             createdTaskAt
             taskContent
             taskDue
+            lists {
+                _id
+                listContent
+                username
+                listCreatedAt
+            }
         }
     }
 `
@@ -75,6 +94,12 @@ export const QUERY_TASKS = gql`
             createdTaskAt
             taskContent
             taskDue
+            lists {
+                _id
+                listContent
+                username
+                listCreatedAt
+            }
         }
     }
 `

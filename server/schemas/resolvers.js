@@ -26,6 +26,9 @@ const resolvers = {
         tasks: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdTaskAt: -1 });
+        },
+        task: async (paren, { _id }) => {
+            return Task.findOne({ _id });
         }
     },
     Mutation: {
@@ -63,6 +66,17 @@ const resolvers = {
                 return task;
             }
             throw new AuthenticationError('Please login to create a task');
+        },
+        addList: async (parent, { taskId, listContent }, context) => {
+            if (context.user) {
+                const updatedTask = await Task.findOneAndUpdate(
+                    { _id: taskId },
+                    { $push: { lists: { listContent, username: context.user.username } } },
+                    { new: true }
+                );
+                return updatedTask;
+            }
+            throw new AuthenticationError('please login');
         }
     }
 }

@@ -10,6 +10,7 @@ const typeDefs = gql`
         createdTaskAt: String
         taskContent: String
         taskDue: String
+        lists: [List]
     }
 
     type List {
@@ -32,7 +33,7 @@ const typeDefs = gql`
         users: [User]
         user(username: String!): User
         tasks(username: String): [Task]
-        task: Task
+        task(_id: ID!): Task
     }
 
     type Auth {
@@ -44,6 +45,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!, picture: String): Auth
         addTask(taskTitle: String!, taskContent: String, taskDue: String): Task
+        addList(taskId: ID!, listContent: String!): Task
     }
 `;
 

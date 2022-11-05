@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Navigate, useParams} from 'react-router-dom';
-import TaskInput from '../components/TaskInput';
+// import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import { QUERY_USER, QUERY_ME_LITE } from '../utils/queries';
 import Auth from '../utils/auth';
@@ -40,7 +40,7 @@ const Profile = () => {
                 </h2>
             </div>
             <div>
-                <div>{!userParam && <TaskInput />}</div>
+                {/* <div>{!userParam && <TaskInput />}</div> */}
                 <div>
                     <TaskList tasks={user.tasks} />
                 </div>

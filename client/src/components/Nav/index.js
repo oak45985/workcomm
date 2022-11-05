@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
+import Modal from '../Modal';
+import ProfileBadge from '../ProfileBadge';
 
 const Nav = () => {
+
+    const [openModal, setOpenModal] = useState(false);
 
     const logout = event => {
         event.preventDefault();
@@ -19,9 +23,13 @@ const Nav = () => {
                 {Auth.loggedIn() ? (
                     <>
                         <Link to="/profile">Profile</Link>
+                        <button onClick={() => {
+                            setOpenModal(true);
+                            }}>Add Task</button>
                         <a href='/' onClick={logout}>
                             Logout
                         </a>
+                        <ProfileBadge />
                     </>
                 ) : (
                     <>
@@ -34,6 +42,7 @@ const Nav = () => {
                     </>
                 )}
             </ul>
+            {openModal && <Modal closeModal={setOpenModal} />}
         </nav>
         </>
     )

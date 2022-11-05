@@ -68,9 +68,9 @@ const Task = props => {
                 <ListItems lists={task.lists} />
                 {Auth.loggedIn() && <ListInput taskId={task._id} />}
                 <h4>This task is due: {task.taskDue}</h4>
-                <button type="submit" onClick={() => handleTaskDelete(task.id) }>
+                {Auth.loggedIn() && <button type="submit" onClick={() => handleTaskDelete(task.id) }>
                     DELETE TASK
-                </button>
+                </button>}
             </div>
         </div>
     );

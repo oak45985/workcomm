@@ -39,6 +39,26 @@ export const ADD_TASK = gql`
         }   
     }
 `
+export const DELETE_TASK = gql`
+    mutation deleteTask($id: ID!) {
+        deleteTask(id: $id) {
+            _id
+            taskTitle
+            username
+            createdTaskAt
+            taskContent
+            taskDue
+            lists {
+                _id
+                listContent
+                username
+                listCreatedAt
+            }
+        }
+    }
+`
+
+//List items
 export const ADD_LIST = gql`
     mutation addList($taskId: ID!, $listContent: String!) {
         addList(taskId: $taskId, listContent: $listContent) {

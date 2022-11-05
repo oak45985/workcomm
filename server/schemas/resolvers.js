@@ -77,6 +77,22 @@ const resolvers = {
                 return updatedTask;
             }
             throw new AuthenticationError('please login');
+        },
+        deleteTask: async (parent, args, context) => {
+            const { id } = args
+            if (context.user) {
+                const deletedTask = await Task.findByIdAndDelete(id);
+
+                await User.findByIdAndRemove(
+                    { _id: context.user._id },
+                    { $pull: { tasks: task._id }},
+                    { new: true}
+                );
+                
+                console.log('post deleted');
+                return null;
+            }
+            throw new AuthenticationError('Login to delete task.')
         }
     }
 }

@@ -43,7 +43,6 @@ const Task = props => {
     }
 
     const id = taskId;
-    console.log(id);
 
     const handleTaskDelete = async event => {
 

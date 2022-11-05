@@ -8,7 +8,6 @@ const ListInput = ({ taskId }) => {
 
     const updateChange = event => {
         setListContent(event.target.value);
-        console.log(listContent);
     };
 
     const handleListForm = async event => {

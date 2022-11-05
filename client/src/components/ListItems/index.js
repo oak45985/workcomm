@@ -6,10 +6,9 @@ const ListItems = ({ lists }) => {
         <ul>
             { lists && lists.map(list => (
                 <li key={list._id}>
-                    {list.listContent} {'// '}
+                    {list.listContent} {' • '}
                     <Link to={`/profile/${list.username}`}>
-                        Added by {list.username} on {list.listCreatedAt}
-                    </Link>
+                        Added by {list.username}</Link> on {list.listCreatedAt} <button>complete</button> <button>x</button>
                 </li>
             ))}
         </ul>

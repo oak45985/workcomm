@@ -8,9 +8,9 @@ const eventSchema = new Schema(
             minlength: 2,
             maxlength: 25
         },
-        username: {
-            type: String,
-            required: true
+        allDay: {
+            type: Boolean,
+            default: true
         },
         start: {
             type: String,

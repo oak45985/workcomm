@@ -31,7 +31,7 @@ const typeDefs = gql`
     type Event {
         _id: ID
         eventTitle: String
-        username: String
+        allDay: Boolean
         start: String
         end: String
     }

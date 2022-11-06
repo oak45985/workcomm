@@ -104,11 +104,11 @@ export const QUERY_TASKS = gql`
     }
 `
 export const QUERY_EVENTS = gql`
-    query events($username: String) {
-        events(username: $username) {
+    query events {
+        events {
             _id
             eventTitle
-            username
+            allDay
             start
             end
         }

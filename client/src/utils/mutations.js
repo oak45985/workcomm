@@ -79,7 +79,7 @@ export const ADD_EVENT = gql`
         addEvent(eventTitle: $eventTitle, start: $start, end: $end) {
             _id
             eventTitle
-            username
+            allDay
             start
             end
         }

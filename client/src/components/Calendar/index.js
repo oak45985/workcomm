@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { QUERY_EVENTS } from "../../utils/queries";
@@ -29,6 +29,14 @@ const OrgCalendar = () => {
     
     const events = data?.events || [];
 
+    let [toggleEvent, setToggleEvent] = useState(false);
+    const [textEvent, setTextEvent] = useState("Add Event");
+
+    let eventToggler = () => {
+        toggleEvent ? setToggleEvent(false) : setToggleEvent(true);
+        toggleEvent ? setTextEvent("Add Event") : setTextEvent("X");
+    }
+
     if (loading) {
         return <div>Loading</div>;
     }
@@ -36,7 +44,8 @@ const OrgCalendar = () => {
     return (
         
         <div>
-            <CalendarInput />
+            {toggleEvent ? <CalendarInput /> : null}
+            <button onClick={eventToggler}>{textEvent}</button>
             <div>
                 <Calendar 
                 localizer={localizer} 

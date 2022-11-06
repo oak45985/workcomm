@@ -26,14 +26,12 @@ const OrgCalendar = () => {
     const events = [
         {
             taskTitle: "John out",
-            username: "John",
             allDay: true,
             start: new Date(2022, 10, 10),
             end: new Date(2022, 10, 12)
         },
         {
             taskTitle: "Hat Day",
-            username: "William",
             allDay: true,
             start: new Date(2022, 10, 14),
             end: new Date(2022, 10, 20)
@@ -60,8 +58,11 @@ const OrgCalendar = () => {
                 <button onClick={handleAddEvent}>Add Event</button>
             </div>
             <div>
-                <Calendar localizer={localizer} events={allEvents}
+                <Calendar 
+                localizer={localizer} 
+                events={allEvents}
                 titleAccessor="taskTitle"
+                desc="desc"
                 startAccessor="start" 
                 endAccessor="end" 
                 views={['month', 'week']}

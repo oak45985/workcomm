@@ -72,3 +72,16 @@ export const ADD_LIST = gql`
         }
     }
 `
+
+//Event items
+export const ADD_EVENT = gql`
+    mutation addEvent($eventTitle: String!, $start: String!, $end: String!) {
+        addEvent(eventTitle: $eventTitle, start: $start, end: $end) {
+            _id
+            eventTitle
+            username
+            start
+            end
+        }
+    }
+`

@@ -103,3 +103,14 @@ export const QUERY_TASKS = gql`
         }
     }
 `
+export const QUERY_EVENTS = gql`
+    query events($username: String) {
+        events(username: $username) {
+            _id
+            eventTitle
+            username
+            start
+            end
+        }
+    }
+`

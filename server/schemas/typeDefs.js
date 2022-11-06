@@ -28,12 +28,21 @@ const typeDefs = gql`
         tasks: [Task]
     }
 
+    type Event {
+        _id: ID
+        eventTitle: String
+        username: String
+        start: String
+        end: String
+    }
+
     type Query {
         me: User
         users: [User]
         user(username: String!): User
         tasks(username: String): [Task]
         task(_id: ID!): Task
+        events: [Event]
     }
 
     type Auth {
@@ -47,6 +56,7 @@ const typeDefs = gql`
         addTask(taskTitle: String!, taskContent: String, taskDue: String): Task
         addList(taskId: ID!, listContent: String!): Task
         deleteTask(id: ID!): Task
+        addEvent(eventTitle: String!, start: String!, end: String!): Event
     }
 `;
 

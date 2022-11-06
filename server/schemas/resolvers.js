@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Task } = require('../models');
+const { User, Task, Event } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -29,6 +29,10 @@ const resolvers = {
         },
         task: async (paren, { _id }) => {
             return Task.findOne({ _id });
+        },
+        events: async () => {
+            return Event.find()
+                .select('-__v');
         }
     },
     Mutation: {
@@ -77,6 +81,14 @@ const resolvers = {
                 return updatedTask;
             }
             throw new AuthenticationError('please login');
+        },
+        addEvent: async (parent, args, context) => {
+            if (context.user) {
+                const event = await Event.create({ ...args, username: context.user.username });
+
+                return event;
+            }
+            throw new AuthenticationError("Please login to create an event");
         },
         deleteTask: async (parent, args, context) => {
             const { id } = args

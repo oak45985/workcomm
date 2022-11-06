@@ -4,6 +4,7 @@ import { QUERY_TASKS } from '../utils/queries';
 // import UserList from '../components/UserList';
 // import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
+import OrgCalendar from "../components/OrgCalendar";
 
 const Home = () => {
     
@@ -19,6 +20,9 @@ const Home = () => {
                 ):(
                     <TaskList tasks={tasks} />
                 )}
+            </div>
+            <div>
+                <OrgCalendar />
             </div>
         </main>
     );

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
 import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const TaskInput = () => {
 
@@ -71,8 +73,8 @@ const TaskInput = () => {
                             onChange={updateChange}
                         />
                         <input
+                            type='date'
                             name='taskDue'
-                            placeholder='12/1/2022'
                             id='taskDue'
                             value={formData.taskDue}
                             onChange={updateChange}

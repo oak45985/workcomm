@@ -20,7 +20,7 @@ const userSchema = new Schema(
             minlength: 5
         },
         picture: {
-            type: String
+            type: String,
         },
         messages: [
             {

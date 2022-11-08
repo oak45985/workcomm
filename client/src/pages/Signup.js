@@ -1,32 +1,22 @@
 import React, { useState } from 'react';
-import { FilePond, registerPlugin } from 'react-filepond';
-import FilePondPluginFileEncode from 'filepond-plugin-file-encode';
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
-import FilePondPluginImageResize from 'filepond-plugin-image-resize';
-import 'filepond/dist/filepond.min.css';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
-registerPlugin(FilePondPluginFileEncode, FilePondPluginImagePreview, FilePondPluginImageResize)
-
 const Signup = () => {
-    const [files, setFiles] = useState(); 
-    const [signupFormState, setSignupFormState] = useState({ username: '', email: '', password: '', picture: '' });
+    
+    const [signupFormState, setSignupFormState] = useState({ username: '', email: '', password: '' });
     const [addUser, { error }] = useMutation(ADD_USER);
-
+    
     // set info from form
     const updateChange = (event) => {
-
         const { name, value } = event.target;
-        console.log(files);
 
         setSignupFormState({
             ...signupFormState,
             [name]: value,
         });
-        // console.log(signupFormState);
+        console.log(signupFormState);
     };
 
     // submit info from form
@@ -83,30 +73,6 @@ const Signup = () => {
                                     checked={false}
                                     value={signupFormState.password.checked}
                                     onChange={updateChange}
-                                />
-                            </div>
-                            <div>
-                                <label>Your Profile Image</label>
-                                {/* <input
-                                    name='picture'
-                                    type='file'
-                                    id='picture'
-                                    className='filepond'
-                                    value={signupFormState.picture}
-                                    onChange={updateChange}
-                                /> */}
-                                <FilePond 
-                                    files={files}
-                                    onupdatefiles={setFiles}
-                                    allowMultiple={false}
-                                    name="picture"
-                                    labelIdle='Drag & drop your photo'
-                                    // image resize
-                                    allowImageResize="true"
-                                    imageResizeTargetWidth="170px"
-                                    imageResizeMode='cover'
-                                    // file encode
-                                    allowFileEncode="true"
                                 />
                             </div>
                             <button type='submit'>

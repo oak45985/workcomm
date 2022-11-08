@@ -26,15 +26,16 @@ const uploadImage = async event => {
     ).then((response) => {
         console.log(JSON.stringify(response.data.public_id));
         // send to User image string
-        const picture = JSON.stringify(response.data.public_id);
+        // ASK TIM YAGER
+        // const picture = JSON.stringify(response.data.public_id);
 
-        try {
-           addPicture({
-                $picture: picture
-            })
-        } catch (e) {
-            console.log(e);
-        }
+        // try {
+        //    addPicture({
+        //         variables: picture
+        //     })
+        // } catch (e) {
+        //     console.log(e);
+        // }
     });
 };
 

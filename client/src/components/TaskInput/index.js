@@ -4,7 +4,6 @@ import { ADD_TASK } from '../../utils/mutations';
 import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const TaskInput = () => {
 
     const [addTask] = useMutation(ADD_TASK, {

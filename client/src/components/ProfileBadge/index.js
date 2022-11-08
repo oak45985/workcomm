@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from "@apollo/client";
 import Auth from '../../utils/auth';
 import { QUERY_ME_LITE } from '../../utils/queries';
+import ImageUpload from '../ImageUpload';
 
 const ProfileBadge = () => {
     
@@ -16,7 +17,11 @@ const ProfileBadge = () => {
                     <div>
                         <p>{userData.me.username}</p>
                         <p>{userData.me.email}</p>
+                        { !userData.me.picture ? (
+                            <ImageUpload />
+                        ) : (
                         <p>{userData.me.picture}</p>
+                        )}
                     </div>
                 ): null}
             </div>

@@ -71,6 +71,18 @@ const resolvers = {
             }
             throw new AuthenticationError('Please login to create a task');
         },
+        addPicture: async (parent, args, context) => {
+            if (context.user) {
+               const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { picture: args } },
+                    { new: true }
+                );
+
+                return updatedUser;
+            }
+            throw new AuthenticationError('Please login to upload image');
+        },
         addList: async (parent, { taskId, listContent }, context) => {
             if (context.user) {
                 const updatedTask = await Task.findOneAndUpdate(

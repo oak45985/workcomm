@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from "@apollo/client";
 import Auth from '../../utils/auth';
 import { QUERY_ME_BADGE } from '../../utils/queries';
+import { Image, Transformation } from "cloudinary-react";
 import ImageUpload from '../ImageUpload';
 
 const ProfileBadge = () => {
@@ -20,7 +21,12 @@ const ProfileBadge = () => {
                         { !userData?.me?.picture ? (
                             <ImageUpload />
                         ) : (
-                        <p>{userData?.me?.picture}</p>
+                        <Image
+                            style={{width: 75}}
+                            cloudName="dmyxg5y4f"
+                            publicId={`https://res.cloudinary.com/dmyxg5y4f/image/upload/${userData.me.picture}`}
+                        >
+                        </Image>
                         )}
                     </div>
                 ): null}

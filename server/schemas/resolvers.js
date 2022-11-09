@@ -71,11 +71,11 @@ const resolvers = {
             }
             throw new AuthenticationError('Please login to create a task');
         },
-        addPicture: async (parent, args, context) => {
+        addPicture: async (parent, { picture }, context) => {
             if (context.user) {
-               const updatedUser = await User.findOneAndUpdate(
+               const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { picture: args } },
+                    { $push: { picture: picture } },
                     { new: true }
                 );
 

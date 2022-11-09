@@ -16,13 +16,13 @@ const Signup = () => {
             ...signupFormState,
             [name]: value,
         });
-        console.log(signupFormState);
+        // console.log(signupFormState);
     };
 
     // submit info from form
     const handleSignupFormSubmit = async event => {
         event.preventDefault();
-        console.log(signupFormState);
+        // console.log(signupFormState);
 
         try {
             const { data } = await addUser({

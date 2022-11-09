@@ -18,16 +18,17 @@ const TaskInput = () => {
                 console.log("ok")
             }
 
-            const { tasks } = cache.readyQuery({ query: QUERY_TASKS });
+            const taskCache = cache.readQuery({ query: QUERY_TASKS });
+            console.log(taskCache);
 
             cache.writeQuery({
                 query: QUERY_TASKS,
-                data: { tasks: [addTask, ...tasks] }
+                data: { tasks: [addTask] }
             });
         }
     });
-
-    const [formData, setFormData] = useState({ taskTitle: '', taskContent: '', taskDue: ''});
+    const defaultFromData = { taskTitle: '', taskContent: '', taskDue: ''}
+    const [formData, setFormData] = useState(defaultFromData);
 
     const updateChange = event => {
         const { name, value } = event.target;
@@ -44,8 +45,8 @@ const TaskInput = () => {
             await addTask({
                 variables: { ...formData }
             });
-
-            formData('');
+            
+            setFormData(defaultFromData);
         } catch (e) {
             console.log(e);
         }

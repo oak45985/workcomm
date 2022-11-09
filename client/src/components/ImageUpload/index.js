@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import Axios from "axios";
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { ADD_PICTURE } from '../../utils/mutations';
-import { QUERY_USER, QUERY_ME_LITE } from '../../utils/queries';
-import Auth from '../../utils/auth';
-
-
+import { QUERY_ME_BADGE } from '../../utils/queries';
 
 const ImageUpload = () => {
 
-const { username: userParam } = useParams();
-const { data } = useQuery(userParam ? QUERY_USER : QUERY_ME_LITE, {
-    variables: { username: userParam }
-})
-const user = data?.me || {}
+// const { username: userParam } = useParams();
+// const { data } = useQuery(userParam ? QUERY_USER : QUERY_ME_LITE, {
+//     variables: { username: userParam }
+// })
+// const user = data?.me || {}
 
-console.log(user._id)
-console.log(user.picture)
+// console.log(user._id)
+// console.log(user.picture)
 
 const [imageSelected, setImageSelected] = useState("");
 const [addPicture] = useMutation(ADD_PICTURE, {
     update(cache, { data: { addPicture }}) {
         try {
-            const { me } = cache.readQuery({ query: QUERY_ME_LITE });
+            const meCache = cache.readQuery({ query: QUERY_ME_BADGE });
+            const { me } = meCache;
+            console.log(meCache);
             cache.writeQuery({
-                query: QUERY_ME_LITE,
-                data: { me: { ...me, picture: addPicture } },
+                query: QUERY_ME_BADGE,
+                data: { me: { ...me, picture: addPicture.picture } },
             });
+            console.log("hello");
         } catch (e) {
             console.log(e)
         };
@@ -52,7 +52,7 @@ const uploadImage = async event => {
         // send to User image string
         // ASK TIM YAGER
         const picture = response.data.public_id;
-        if(Auth.loggedIn()){
+        // if(Auth.loggedIn()){
             try {
             addPicture({
                     variables: { picture: picture }
@@ -60,7 +60,6 @@ const uploadImage = async event => {
             } catch (e) {
                 console.log(e);
             }
-        }
     });
 };
 

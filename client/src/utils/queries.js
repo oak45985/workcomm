@@ -65,6 +65,17 @@ export const QUERY_ME_LITE = gql`
     }
 `;
 
+export const QUERY_ME_BADGE = gql`
+    {
+        me {
+            _id
+            username
+            email
+            picture
+        }
+    }
+`;
+
 //Task Items
 export const QUERY_TASK = gql`
     query task($id: ID!) {

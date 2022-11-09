@@ -28,10 +28,11 @@ export const ADD_USER = gql`
 export const ADD_PICTURE = gql `
     mutation addPicture($picture: String!) {
         addPicture(picture: $picture) {
-            user {
+            # token
+            # user {
                 _id
                 picture
-            }
+            # }
         }
     }
 `
@@ -46,6 +47,12 @@ export const ADD_TASK = gql`
             createdTaskAt
             taskContent
             taskDue
+            lists {
+                _id
+                listContent
+                username
+                listCreatedAt
+            }
         }   
     }
 `

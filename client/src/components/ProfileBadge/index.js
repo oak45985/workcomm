@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from "@apollo/client";
 import Auth from '../../utils/auth';
-import { QUERY_ME_LITE } from '../../utils/queries';
+import { QUERY_ME_BADGE } from '../../utils/queries';
 import ImageUpload from '../ImageUpload';
 
 const ProfileBadge = () => {
     
-    const { data: userData } = useQuery(QUERY_ME_LITE);
+    const { data: userData } = useQuery(QUERY_ME_BADGE);
 
     const loggedIn = Auth.loggedIn();
 
@@ -15,12 +15,12 @@ const ProfileBadge = () => {
             <div>
                 {loggedIn && userData ? (
                     <div>
-                        <p>{userData.me.username}</p>
-                        <p>{userData.me.email}</p>
-                        { !userData.me.picture ? (
+                        <p>{userData?.me?.username}</p>
+                        <p>{userData?.me?.email}</p>
+                        { !userData?.me?.picture ? (
                             <ImageUpload />
                         ) : (
-                        <p>{userData.me.picture}</p>
+                        <p>{userData?.me?.picture}</p>
                         )}
                     </div>
                 ): null}

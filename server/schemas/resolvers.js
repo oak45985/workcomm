@@ -75,10 +75,10 @@ const resolvers = {
             if (context.user) {
                const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $push: { picture: picture } },
+                    { picture: picture },
                     { new: true }
                 );
-
+                console.log(updatedUser);
                 return updatedUser;
             }
             throw new AuthenticationError('Please login to upload image');

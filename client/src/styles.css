@@ -231,3 +231,10 @@ ul {
 .task-input-form button {
     margin-top: 2vw;
 }
+
+.calendar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+}

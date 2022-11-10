@@ -43,10 +43,11 @@ const OrgCalendar = () => {
 
     return (
         
-        <div>
-            {toggleEvent ? <CalendarInput /> : null}
-            <button onClick={eventToggler}>{textEvent}</button>
-            <div>
+        <div className="calendar">
+            <h1>Calendar</h1>
+            {/* {toggleEvent ? <CalendarInput /> : null} */}
+            {/* <button onClick={eventToggler}>{textEvent}</button> */}
+            <div className="calendar">
                 <Calendar 
                 localizer={localizer} 
                 events={events}
@@ -55,7 +56,10 @@ const OrgCalendar = () => {
                 startAccessor="start" 
                 endAccessor="end" 
                 views={['month', 'week']}
-                style={{height: 500, margin: "50px"}} />
+                style={{height: 700, margin: "0px"}} />
+                {toggleEvent ? <CalendarInput /> : null}
+                <br></br>
+                <button onClick={eventToggler}>{textEvent}</button>
             </div>
         </div>
     )

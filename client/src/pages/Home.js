@@ -20,6 +20,7 @@ const Home = () => {
                     <TaskList tasks={tasks} />
                 )}
             </div>
+            <br/>
             <div>
                 <OrgCalendar />
             </div>

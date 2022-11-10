@@ -31,7 +31,9 @@ const TaskList = ({ tasks }) => {
                     </header>
                     </Link>
                     <div className='task-content'>
-                        <h4>{task.username}</h4>
+                        <Link to={`/profile/${task.username}`} >
+                            <h4>{task.username}</h4>
+                        </Link>
                         <p>created task on: {task.createdTaskAt}</p>
                         <p>{task.taskContent}</p>
                         {toggle ? <ListItems lists={task.lists} /> : null}

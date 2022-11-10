@@ -38,7 +38,17 @@ ul {
 /* Pages */
 .page-home {
     display: flex;
-    max-width: 80%;
+    /* max-width: 80%; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-profile {
+    display: flex;
+    /* max-width: 80%; */
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: center;

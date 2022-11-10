@@ -33,11 +33,16 @@ const Profile = () => {
     }
 
     return (
-        <div>
+        <div className='page-profile'>
             <div>
                 <h2>
                     {userParam ? `${user.username}` : "Your"} Tasks
                </h2>
+            </div>
+            <div>
+                <h4>{userParam ? `${user.username}'s Information` : ""} </h4>
+                <p>Username: {user.username}</p>
+                <p>Email: {user.email}</p>
             </div>
             <div>
                 {/* <div>{!userParam && <TaskInput />}</div> */}

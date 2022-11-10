@@ -78,7 +78,7 @@ const resolvers = {
                     { picture: picture },
                     { new: true }
                 );
-                console.log(updatedUser);
+                
                 return updatedUser;
             }
             throw new AuthenticationError('Please login to upload image');
@@ -113,7 +113,6 @@ const resolvers = {
                     { new: true}
                 );
                 
-                console.log('post deleted');
                 return deletedTask;
             }
             throw new AuthenticationError('Login to delete task.')

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from "@apollo/client";
 import { QUERY_TASKS } from '../utils/queries';
-// import UserList from '../components/UserList';
-// import TaskInput from '../components/TaskInput';
 import TaskList from '../components/TaskList';
 import OrgCalendar from "../components/Calendar";
 

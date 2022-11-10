@@ -7,15 +7,6 @@ import { QUERY_ME_BADGE } from '../../utils/queries';
 
 const ImageUpload = () => {
 
-// const { username: userParam } = useParams();
-// const { data } = useQuery(userParam ? QUERY_USER : QUERY_ME_LITE, {
-//     variables: { username: userParam }
-// })
-// const user = data?.me || {}
-
-// console.log(user._id)
-// console.log(user.picture)
-
 const [imageSelected, setImageSelected] = useState("");
 const [addPicture] = useMutation(ADD_PICTURE, {
     update(cache, { data: { addPicture }}) {
@@ -49,10 +40,8 @@ const uploadImage = async event => {
         formData
     ).then((response) => {
         console.log(response.data.public_id);
-        // send to User image string
-        // ASK TIM YAGER
+
         const picture = response.data.public_id;
-        // if(Auth.loggedIn()){
             try {
             addPicture({
                     variables: { picture: picture }

@@ -15,7 +15,7 @@ const Nav = () => {
 
     return(
         <>
-        <nav>
+        <nav className="P-nav-bar">
             <ul>
                 <li>
                 <Link to='/'>Home</Link>

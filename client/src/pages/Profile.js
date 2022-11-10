@@ -36,8 +36,8 @@ const Profile = () => {
         <div>
             <div>
                 <h2>
-                    {userParam ? `${user.username}` : "your"} profile.
-                </h2>
+                    {userParam ? `${user.username}` : "Your"} Tasks
+               </h2>
             </div>
             <div>
                 {/* <div>{!userParam && <TaskInput />}</div> */}

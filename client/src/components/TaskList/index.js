@@ -18,21 +18,25 @@ const TaskList = ({ tasks }) => {
     }
 
     return (
-        <div>
+        <div style={{ width: "75%", overflow: "auto", display: "flex", background: "grey" }}>
             {tasks && tasks.map(task => {
                 return(
-                <div key={task._id}>
+                <div key={task._id} className="task-card">
+                    <Link to={`/task/${task._id}`} style={{textDecoration: "none"}}>
+                    <header>
                     <h2>
-                        <Link to={`/task/${task._id}`}>
                             {task.taskTitle}
-                        </Link>
                     </h2>
-                    <h3>{task.username}</h3>
-                    <p>created task on: {task.createdTaskAt}</p>
-                    <p>{task.taskContent}</p>
-                    {toggle ? <ListItems lists={task.lists} /> : null}
-                    <button onClick={toggler}>{text}</button>
-                    <p>This task will be due: {task.taskDue}</p>
+                    </header>
+                    </Link>
+                    <div className='task-content'>
+                        <h4>{task.username}</h4>
+                        <p>created task on: {task.createdTaskAt}</p>
+                        <p>{task.taskContent}</p>
+                        {toggle ? <ListItems lists={task.lists} /> : null}
+                        <button onClick={toggler}>{text}</button>
+                        <p>This task will be due: {task.taskDue}</p>
+                    </div>
                 </div>
                 );
             })}

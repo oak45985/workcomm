@@ -15,19 +15,23 @@ const ProfileBadge = () => {
         <>
             <div>
                 {loggedIn && userData ? (
-                    <div>
-                        <p>{userData?.me?.username}</p>
-                        <p>{userData?.me?.email}</p>
-                        { !userData?.me?.picture ? (
-                            <ImageUpload />
-                        ) : (
-                        <Image
-                            style={{width: 75}}
-                            cloudName="dmyxg5y4f"
-                            publicId={`https://res.cloudinary.com/dmyxg5y4f/image/upload/${userData.me.picture}`}
-                        >
-                        </Image>
-                        )}
+                    <div className='profile-badge-nav'>
+                        <div className='profile-badge-nav-img'>
+                            { !userData?.me?.picture ? (
+                                <ImageUpload />
+                            ) : (
+                            <Image
+                                // style={{width: 75}}
+                                cloudName="dmyxg5y4f"
+                                publicId={`https://res.cloudinary.com/dmyxg5y4f/image/upload/c_fill,h_50,w_50/r_100/${userData.me.picture}`}
+                            >
+                            </Image>
+                            )}
+                        </div>
+                        <div className='profile-badge-text'>
+                            <p>{userData?.me?.username}</p>
+                            <p>{userData?.me?.email}</p>
+                        </div>
                     </div>
                 ): null}
             </div>

@@ -12,6 +12,7 @@ const Home = () => {
 
     return (
         <main>
+            <h1>All Tasks</h1>
             <div>
                 {loading ? (
                 <div>Loading...</div>

@@ -56,19 +56,19 @@ const Task = props => {
     }
 
     return (
-        <div>
-            <div>
+        <div className='task-card'>
+            <header>
                 <h2>{task.taskTitle}</h2>
                 <h3>{task.username}</h3>
                 <h4>{task.createdTaskAt}</h4>
                 <p>{task.id}</p>
-            </div>
-            <div>
+            </header>
+            <div className='task-content'>
                 <p>{task.taskContent}</p>
                 <ListItems lists={task.lists} />
                 {Auth.loggedIn() && <ListInput taskId={task._id} />}
                 <h4>This task is due: {task.taskDue}</h4>
-                {Auth.loggedIn() && <button type="submit" onClick={() => handleTaskDelete(task.id) }>
+                {Auth.loggedIn() && <button type="submit" onClick={() => handleTaskDelete(task.id) } className="delete">
                     DELETE TASK
                 </button>}
             </div>

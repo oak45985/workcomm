@@ -47,10 +47,10 @@ const Task = props => {
     }
 
     const handleTaskDelete = async event => {
-
+        const id = taskId;
         try{
             await deleteTask({
-                variables: { taskId : task._id }
+                variables: { id }
             });
 
         } catch (e) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from "@apollo/client";
 import Auth from '../../utils/auth';
 import { QUERY_ME_BADGE } from '../../utils/queries';
-import { Image, Transformation } from "cloudinary-react";
+import { Image } from "cloudinary-react";
 import ImageUpload from '../ImageUpload';
 
 const ProfileBadge = () => {

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import ListItems from "../ListItems";
+// import { useQuery } from '@apollo/client';
+// import { QUERY_USERS } from "../../utils/queries";
+// import { Image } from "cloudinary-react";
 
 const TaskList = ({ tasks }) => {
 
+    // const { data: userData } = useQuery(QUERY_USERS);
 
     let [toggle, setToggle] = useState(false);
     const [text, setText] = useState("Show Items");
@@ -28,17 +32,18 @@ const TaskList = ({ tasks }) => {
                     <h2>
                             {task.taskTitle}
                     </h2>
+                    <p>Task Due: {task.taskDue}</p>
                     </header>
                     </Link>
                     <div className='task-content'>
-                        <Link to={`/profile/${task.username}`} >
-                            <h4>{task.username}</h4>
-                        </Link>
-                        <p>created task on: {task.createdTaskAt}</p>
-                        <p>{task.taskContent}</p>
+                        <h4><Link to={`/profile/${task.username}`} style={{textDecoration: "none"}}>{task.username}</Link>created task on: {task.createdTaskAt}</h4>
+                        <div className='task-desc'>
+                            <p>Task Description</p>
+                            <p className="task-para">{task.taskContent}</p>
+                            <br/>
+                        </div>
                         {toggle ? <ListItems lists={task.lists} /> : null}
                         <button onClick={toggler}>{text}</button>
-                        <p>This task will be due: {task.taskDue}</p>
                     </div>
                 </div>
                 );

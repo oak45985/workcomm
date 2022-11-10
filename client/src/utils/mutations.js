@@ -28,11 +28,8 @@ export const ADD_USER = gql`
 export const ADD_PICTURE = gql `
     mutation addPicture($picture: String!) {
         addPicture(picture: $picture) {
-            # token
-            # user {
-                _id
-                picture
-            # }
+            _id
+            picture
         }
     }
 `

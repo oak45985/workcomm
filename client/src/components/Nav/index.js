@@ -18,26 +18,26 @@ const Nav = () => {
         <nav className="P-nav-bar">
             <ul>
                 <li>
-                <Link to='/'>Home</Link>
+                <Link to='/' style={{textDecoration: "none"}}>Home</Link>
                 </li>
                 {Auth.loggedIn() ? (
                     <>
-                        <Link to="/profile">Profile</Link>
+                        <Link to="/profile" style={{textDecoration: "none"}}>Profile</Link>
                         <button onClick={() => {
                             setOpenModal(true);
                             }}>Add Task</button>
-                        <a href='/' onClick={logout}>
+                        <a href='/' onClick={logout} style={{textDecoration: "none"}}>
                             Logout
                         </a>
-                        <Link to="/profile"><ProfileBadge /></Link>
+                        <ProfileBadge />
                     </>
                 ) : (
                     <>
                         <li>
-                        <Link to='/login'>Login</Link>
+                        <Link to='/login' style={{textDecoration: "none"}}>Login</Link>
                         </li>
                         <li>
-                        <Link to='/signup'>Signup</Link>
+                        <Link to='/signup' style={{textDecoration: "none"}}>Signup</Link>
                         </li>
                     </>
                 )}

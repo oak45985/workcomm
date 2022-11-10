@@ -114,7 +114,7 @@ const resolvers = {
                 );
                 
                 console.log('post deleted');
-                return null;
+                return deletedTask;
             }
             throw new AuthenticationError('Login to delete task.')
         }

@@ -9,6 +9,7 @@ import ListInput from '../components/ListInput';
 import ListItems from '../components/ListItems';
 
 const Task = props => {
+
     const { id: taskId } = useParams();
 
     const { loading, data } = useQuery(QUERY_TASK, {
@@ -55,6 +56,26 @@ const Task = props => {
         }
     }
 
+    if(Auth.loggedIn() && Auth.getProfile().data.username === task.username) {
+        return <div className='task-card'>
+        <header>
+            <h2>{task.taskTitle}</h2>
+            <h3>{task.username}</h3>
+            <h4>{task.createdTaskAt}</h4>
+            <p>{task.id}</p>
+        </header>
+        <div className='task-content'>
+            <p>{task.taskContent}</p>
+            <ListItems lists={task.lists} />
+            {Auth.loggedIn() && <ListInput taskId={task._id} />}
+            <h4>This task is due: {task.taskDue}</h4>
+        </div>
+        <button type="submit" onClick={() => handleTaskDelete(task.id) } className="delete">
+             DELETE TASK
+        </button>
+    </div>
+    }
+
     return (
         <div className='task-card'>
             <header>
@@ -68,9 +89,6 @@ const Task = props => {
                 <ListItems lists={task.lists} />
                 {Auth.loggedIn() && <ListInput taskId={task._id} />}
                 <h4>This task is due: {task.taskDue}</h4>
-                {Auth.loggedIn() && <button type="submit" onClick={() => handleTaskDelete(task.id) } className="delete">
-                    DELETE TASK
-                </button>}
             </div>
         </div>
     );

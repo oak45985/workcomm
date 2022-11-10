@@ -44,7 +44,7 @@ const OrgCalendar = () => {
     return (
         
         <div className="calendar">
-            <h1>Calendar</h1>
+            <h1>Shared Calendar</h1>
             {/* {toggleEvent ? <CalendarInput /> : null} */}
             {/* <button onClick={eventToggler}>{textEvent}</button> */}
             <div className="calendar">
@@ -56,7 +56,7 @@ const OrgCalendar = () => {
                 startAccessor="start" 
                 endAccessor="end" 
                 views={['month', 'week']}
-                style={{height: 700, margin: "0px"}} />
+                style={{height: 700, minWidth: 1000, margin: "0px"}} />
                 {toggleEvent ? <CalendarInput /> : null}
                 <br></br>
                 <button onClick={eventToggler}>{textEvent}</button>

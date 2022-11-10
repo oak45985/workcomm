@@ -8,7 +8,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('tasks');
+                    .populate('tasks').sort({ createdTaskAt: -1 });
                 return userData;
             }
             throw new AuthenticationError('Please log in');
@@ -16,19 +16,19 @@ const resolvers = {
         users: async () => {
             return User.find()
                 .select('-__v -password')
-                .populate('tasks');
+                .populate('tasks').sort({ createdTaskAt: -1 });
         },
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('tasks');
+                .populate('tasks').sort({ createdTaskAt: -1 });
         },
         tasks: async (parent, { username }) => {
             const params = username ? { username } : {};
             return Task.find(params).sort({ createdTaskAt: -1 });
         },
         task: async (paren, { _id }) => {
-            return Task.findOne({ _id });
+            return Task.findOne({ _id }).sort({ createdTaskAt: -1 });
         },
         events: async () => {
             return Event.find()

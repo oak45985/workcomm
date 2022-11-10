@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-import Modal from '../Modal';
+import TaskInput from '../TaskInput';
 import ProfileBadge from '../ProfileBadge';
 
 const Nav = () => {
@@ -29,7 +29,7 @@ const Nav = () => {
                         <a href='/' onClick={logout}>
                             Logout
                         </a>
-                        <ProfileBadge />
+                        <Link to="/profile"><ProfileBadge /></Link>
                     </>
                 ) : (
                     <>
@@ -42,7 +42,7 @@ const Nav = () => {
                     </>
                 )}
             </ul>
-            {openModal && <Modal closeModal={setOpenModal} />}
+            {openModal && <TaskInput closeModal={setOpenModal} />}
         </nav>
         </>
     )

@@ -4,7 +4,7 @@ import { ADD_TASK } from '../../utils/mutations';
 import { QUERY_ME_LITE, QUERY_TASKS } from '../../utils/queries';
 import "react-datepicker/dist/react-datepicker.css";
 
-const TaskInput = () => {
+const TaskInput = ({closeModal}) => {
 
     const [addTask] = useMutation(ADD_TASK, {
         update(cache, { data: { addTask }}) {
@@ -18,17 +18,16 @@ const TaskInput = () => {
                 console.log("ok")
             }
 
-            const taskCache = cache.readQuery({ query: QUERY_TASKS });
-            console.log(taskCache);
+            const { tasks } = cache.readQuery({ query: QUERY_TASKS });
 
             cache.writeQuery({
                 query: QUERY_TASKS,
-                data: { tasks: [addTask] }
+                data: { tasks: [addTask, ...tasks] }
             });
         }
     });
     const defaultFromData = { taskTitle: '', taskContent: '', taskDue: ''}
-    const [formData, setFormData] = useState(defaultFromData);
+    const [formData, setFormData] = useState({ taskTitle: '', taskContent: '', taskDue: ''});
 
     const updateChange = event => {
         const { name, value } = event.target;
@@ -53,11 +52,13 @@ const TaskInput = () => {
     }
 
     return (
-        <main>
-            <div>
+        <div className='modal'>
+            <div className='task-input-header'>
                 <h3>Add a Task</h3>
-                <div>
-                    <form onSubmit={handleTaskFormSubmit}>
+                <button className="delete" onClick={() => closeModal(false)}>X</button>
+            </div>
+                    <form onSubmit={handleTaskFormSubmit} className='task-input-form'>
+                        <label>Task Title</label>
                         <input
                             name='taskTitle'
                             placeholder='Your Tasks Title'
@@ -65,6 +66,7 @@ const TaskInput = () => {
                             value={formData.taskTitle}
                             onChange={updateChange}
                         />
+                        <label>Task Description</label>
                         <textarea
                             name='taskContent'
                             placeholder="A short description of the task"
@@ -72,6 +74,7 @@ const TaskInput = () => {
                             value={formData.taskContent}
                             onChange={updateChange}
                         />
+                        <label>Task's Due Date</label>
                         <input
                             type='date'
                             name='taskDue'
@@ -80,13 +83,10 @@ const TaskInput = () => {
                             onChange={updateChange}
                         />
                         <button type='submit'>
-                            Submit
+                            Add Task
                         </button>
                     </form>
-                    {/* {error && <div>Couldn't upload task</div>} */}
                 </div>
-            </div>
-        </main>
     );
 };
 

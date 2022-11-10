@@ -3,8 +3,7 @@ import TaskInput from '../TaskInput'
 
 function Modal({ closeModal }) {
     return (
-        <div>
-            <h1>Add Task</h1>
+        <div className='active'>
             <button onClick={() => closeModal(false)}>X</button>
             <TaskInput />
         </div>

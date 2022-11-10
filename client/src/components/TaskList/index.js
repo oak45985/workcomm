@@ -18,7 +18,8 @@ const TaskList = ({ tasks }) => {
     }
 
     return (
-        <div style={{ width: "75%", overflow: "auto", display: "flex", background: "grey" }}>
+        <div className="task-list" //style={{ width: "50%", overflow: "auto", display: "flex", background: "grey" }}>
+            >
             {tasks && tasks.map(task => {
                 return(
                 <div key={task._id} className="task-card">

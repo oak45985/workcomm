@@ -35,6 +35,24 @@ button:hover {
 ul {
     list-style-type: none;
 }
+/* Pages */
+.page-home {
+    display: flex;
+    max-width: 80%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* task list */
+.task-list {
+    width: 75vw;
+    overflow: auto;
+    display: flex;
+    background: linear-gradient(0.25turn, #ffffff, #a1a1a1);
+}
 
 /* task card */
 .task-card {
@@ -96,27 +114,50 @@ ul {
 /* The Modal (background) */
 .modal {
     /* display: none; Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  /* Modal Content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    position: fixed;
+    z-index: 1;
+    padding-top: 25vw;
+    top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
+  .task-input-header {
+    display: flex;
+    width: 50%;
+    background-color: white;
+    border-top-left-radius: 1.5vw;
+    border-top-right-radius: 1.5vw;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1vw;
+    padding-right: 1vw;
+    padding-left: 5vw;
+}
 
-/* .task-card h2 {
-    color: black;
-} */
+.task-input-form {
+    display: flex;
+    width: 50%;
+    background-color: white;
+    border-bottom-left-radius: 1.5vw;
+    border-bottom-right-radius: 1.5vw;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-right: 5vw;
+    padding-left: 5vw;
+    padding-bottom: 2vw;
+    border: none;
+}
+
+.task-input-form button {
+    margin-top: 2vw;
+}

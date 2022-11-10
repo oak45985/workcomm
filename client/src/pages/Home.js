@@ -11,7 +11,7 @@ const Home = () => {
     const tasks = data?.tasks || [];
 
     return (
-        <main>
+        <main className="page-home">
             <h1>All Tasks</h1>
             <div>
                 {loading ? (

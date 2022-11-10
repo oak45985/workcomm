@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import ListItems from "../ListItems";
+// import ListInput from "../ListInput";
 // import { useQuery } from '@apollo/client';
 // import { QUERY_USERS } from "../../utils/queries";
 // import { Image } from "cloudinary-react";
@@ -9,13 +10,13 @@ const TaskList = ({ tasks }) => {
 
     // const { data: userData } = useQuery(QUERY_USERS);
 
-    let [toggle, setToggle] = useState(false);
-    const [text, setText] = useState("Show Items");
+    // let [toggle, setToggle] = useState(false);
+    // const [text, setText] = useState("Show Items");
 
-    let toggler = () => {
-        toggle ? setToggle(false) : setToggle(true);
-        toggle ? setText("Show Items") : setText("Hide");
-    }
+    // let toggler = () => {
+    //     toggle ? setToggle(false) : setToggle(true);
+    //     toggle ? setText("Show Items") : setText("Hide");
+    // }
 
     if (!tasks.length) {
         return <h3>No Tasks Yet</h3>
@@ -42,11 +43,10 @@ const TaskList = ({ tasks }) => {
                             <p className="task-para">{task.taskContent}</p>
                             <br/>
                         </div>
-                        {toggle ? <ListItems lists={task.lists} /> : null}
-                        <button onClick={toggler}>{text}</button>
+                         <ListItems task={task} />
                     </div>
                 </div>
-                );
+                )
             })}
         </div>
     )

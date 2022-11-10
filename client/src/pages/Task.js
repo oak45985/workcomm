@@ -1,17 +1,17 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { Navigate, useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { QUERY_TASK, QUERY_ME_LITE, QUERY_TASKS } from '../utils/queries';
 import { DELETE_TASK } from '../utils/mutations'
-import ListInput from '../components/ListInput';
 import ListItems from '../components/ListItems';
-// import Nav from '../components/Nav';
 
 const Task = props => {
 
     const { id: taskId } = useParams();
+
+    console.log(taskId);
 
     const navigate = useNavigate();
 
@@ -40,22 +40,17 @@ const Task = props => {
         }
     });
 
-    const task = data?.task || <Navigate to='/profile' />;
-
+    const task = data?.task
 
     if (loading) {
         return <div>Loading</div>;
     }
 
-    const id = taskId;
-
-    // console.log(id);
-
     const handleTaskDelete = async event => {
 
         try{
             await deleteTask({
-                variables: { id }
+                variables: { taskId : task._id }
             });
 
         } catch (e) {
@@ -63,10 +58,6 @@ const Task = props => {
         }
     }
 
-
-    if(task.data === null) {
-        return <Navigate to='/profile' />
-    }
 
     if(Auth.loggedIn() && Auth.getProfile().data.username === task.username) {
         return <div className='page-task'>
@@ -82,11 +73,11 @@ const Task = props => {
                     <p>Task Description</p>
                     <p>{task.taskContent}</p>
                 </div>
-                    <ListItems lists={task.lists} />
-                    {Auth.loggedIn() && <ListInput taskId={task._id} />}
+                    <ListItems task={task} />
+                    {/* {Auth.loggedIn() && <ListInput taskId={task._id} />} */}
                     <p>Task Created: {task.createdTaskAt}</p>
             </div>
-            <button type="submit" onClick={() => handleTaskDelete(task.id) } className="delete">
+            <button type="submit" onClick={() => handleTaskDelete(task._id) } className="delete">
                 DELETE TASK
             </button>
         </div>
@@ -111,8 +102,8 @@ const Task = props => {
                 </header>
                 <div className='task-content'>
                     <p>{task.taskContent}</p>
-                    <ListItems lists={task.lists} />
-                    {Auth.loggedIn() && <ListInput taskId={task._id} />}
+                    <ListItems task={task} />
+                    {/* {Auth.loggedIn() && <ListInput taskId={task._id} />} */}
                     <p>{task.createdTaskAt}</p>
                 </div>
             </div>

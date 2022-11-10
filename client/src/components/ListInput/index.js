@@ -26,7 +26,7 @@ const ListInput = ({ taskId }) => {
     return (
         <div>
             <form onSubmit={handleListForm}>
-                <p>Add an item to accomplish</p>
+                <label>Add an item to accomplish</label>
                 <input
                     placeholder="Patch gallery"
                     value={listContent}

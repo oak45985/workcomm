@@ -33,7 +33,7 @@ Links to the deployed application and GitHub repository.
 ## <a name="use">Usage</a>
 <p>Deployed Site: https://sheltered-sea-51848.herokuapp.com/<br>
 GitHub: https://github.com/oak45985/workcomm <br>
-Porfolio Site: </p><br>
+Porfolio Site: https://oak45985.github.io/john-new-portfolio/</p><br>
 
 
 

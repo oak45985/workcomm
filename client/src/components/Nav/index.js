@@ -17,28 +17,20 @@ const Nav = () => {
         <>
         <nav className="P-nav-bar">
             <ul>
-                <li>
-                <Link to='/' style={{textDecoration: "none"}}>Home</Link>
-                </li>
                 {Auth.loggedIn() ? (
                     <>
-                        <Link to="/profile" style={{textDecoration: "none"}}>Profile</Link>
+                        <button style={{textDecoration: "none"}}><Link to="/" style={{textDecoration: "none", color: "black"}}>All Tasks</Link></button>
+                        <button style={{textDecoration: "none"}}><Link to="/profile" style={{textDecoration: "none", color: "black"}}>Profile</Link></button>
                         <button onClick={() => {
                             setOpenModal(true);
                             }}>Add Task</button>
-                        <a href='/' onClick={logout} style={{textDecoration: "none"}}>
-                            Logout
-                        </a>
+                        <button style={{textDecoration: "none", color: "black"}}  onClick={logout}>Logout</button>
                         <ProfileBadge />
                     </>
                 ) : (
                     <>
-                        <li>
-                        <Link to='/login' style={{textDecoration: "none"}}>Login</Link>
-                        </li>
-                        <li>
-                        <Link to='/signup' style={{textDecoration: "none"}}>Signup</Link>
-                        </li>
+                        <button style={{textDecoration: "none", color: "black"}}><Link to='/login' style={{textDecoration: "none", color: "black"}}>Login</Link></button>
+                        <button style={{textDecoration: "none", color: "black"}}><Link to='/signup' style={{textDecoration: "none", color: "black"}}>Signup</Link></button>  
                     </>
                 )}
             </ul>

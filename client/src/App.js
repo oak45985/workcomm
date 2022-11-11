@@ -48,6 +48,9 @@ function App() {
       <Router>
         <>
           <Nav />
+          <br/>
+          <h1 className='titlework'>WORK COMM</h1>
+          <br/>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login />} />

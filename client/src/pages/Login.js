@@ -33,10 +33,12 @@ const Login = (props) => {
     return (
         <main>
             <div>
-                <div>
+                <div className='page-login'>
                     <h3>Login</h3>
                     <div>
                         <form onSubmit={handleLoginFormSubmit}>
+                            <label>Your Email</label>
+                            <br/>
                             <input
                                 className='form-input'
                                 placeholder='youremail@email.com'
@@ -46,6 +48,10 @@ const Login = (props) => {
                                 value={loginFormState.email}
                                 onChange={updateChange}
                             />
+                            <br/>
+                            <br/>
+                            <label>Your Password</label>
+                            <br/>
                             <input
                                 className='form-input'
                                 name='password'
@@ -54,6 +60,8 @@ const Login = (props) => {
                                 value={loginFormState.password}
                                 onChange={updateChange}
                             />
+                            <br/>
+                            <br/>
                             <button type='submit'>
                                 Submit
                             </button>

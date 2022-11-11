@@ -11,8 +11,6 @@ const Task = props => {
 
     const { id: taskId } = useParams();
 
-    console.log(taskId);
-
     const navigate = useNavigate();
 
     const { loading, data } = useQuery(QUERY_TASK, {

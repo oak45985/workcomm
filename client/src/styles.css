@@ -89,6 +89,18 @@ ul {
     align-items: center;
 }
 
+.page-login,
+.page-signup {
+    display: flex;
+    max-width: inherit;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+}
+
 /* task list */
 .task-list {
     width: 75vw;
@@ -117,7 +129,7 @@ ul {
 }
 
 .task-card header {
-    color: black;
+    color: rgb(28, 28, 28);
     background-color: rgb(187, 187, 187);
     margin-right: 2vw;
     margin-left: 2vw;
@@ -127,18 +139,17 @@ ul {
 }
 
 .task-card header:hover {
-    color: rgb(57, 57, 57);
+    color: rgb(0, 0, 0);
     background-color: rgb(236, 235, 235);
     transition: all 0.2s;
 }
 
 .task-content {
-    display: flex;
     margin: 1vw;
-    margin-top: -1vw;
+    margin-top: 2vw;
     display: flex;
-    margin-bottom: 2vw;
-    margin-top: -1vw;
+    margin-bottom: 0vw;
+    margin-top: 0vw;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -147,16 +158,41 @@ ul {
 .task-desc {
     color: black;
     background-color: rgb(255, 255, 255);
-    /* margin-right: 2vw;*/
     min-width: 100%;
     padding-bottom: 0vw;
     margin-bottom: 1vw;
     border-radius: 1vw;
     text-align: center;
+    max-width: 25vw;
+}
+
+.list-items {
+    color: black;
+    background-color: rgb(255, 255, 255);
+    min-width: 100%;
+    padding-bottom: 1vw;
+    margin-bottom: 0vw;
+    border-radius: 1vw;
+    text-align: center;
+    max-width: 25vw;
+    font-size: 1vw;
+}
+
+.list-items p {
+    font-size: 1.2vw;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.list-items button {
+    max-width: inherit;
+    padding-left: 0vw;
+    padding-right: 0vw;
 }
 
 .task-para {
-    font-size: 1vw;
+    font-size: 1.2vw;
+    max-width: inherit;
 }
 
 .P-nav-bar ul {
@@ -237,4 +273,9 @@ ul {
     width: 100%;
     justify-content: center;
     flex-direction: column;
+}
+
+.titlework {
+    display: flex;
+    justify-content: center;
 }

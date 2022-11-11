@@ -37,12 +37,13 @@ const Signup = () => {
     return (
         <main>
             <div>
-                <div>
+                <div className='page-login'>
                     <h3>Sign Up</h3>
                     <div>
                         <form onSubmit={handleSignupFormSubmit}>
                             <div>
                                 <label>Your Name</label>
+                                <br/>
                                 <input
                                     placeholder='Your username'
                                     name='username'
@@ -51,9 +52,12 @@ const Signup = () => {
                                     value={signupFormState.username}
                                     onChange={updateChange}
                                 />
+                                <br/>
+                                <br/>
                             </div>
                             <div>
-                                <label>Your Email</label>   
+                                <label>Your Email</label>
+                                <br/>   
                                 <input
                                     placeholder='Your email'
                                     name='email'
@@ -62,9 +66,12 @@ const Signup = () => {
                                     value={signupFormState.email}
                                     onChange={updateChange}
                                 />
+                                <br/>
+                                <br/>
                             </div>
                             <div>
                                 <label>Your Password</label>
+                                <br/>
                                 <input
                                     placeholder='Your password'
                                     name='password'
@@ -74,6 +81,8 @@ const Signup = () => {
                                     value={signupFormState.password.checked}
                                     onChange={updateChange}
                                 />
+                                <br/>
+                                <br/>
                             </div>
                             <button type='submit'>
                                 Submit

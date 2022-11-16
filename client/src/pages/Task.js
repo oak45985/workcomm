@@ -6,6 +6,7 @@ import Auth from '../utils/auth';
 import { QUERY_TASK, QUERY_ME_LITE, QUERY_TASKS } from '../utils/queries';
 import { DELETE_TASK } from '../utils/mutations'
 import ListItems from '../components/ListItems';
+import UserImage from '../components/UserImage';
 
 const Task = props => {
 
@@ -62,6 +63,7 @@ const Task = props => {
         <div className='task-card'>
             <header>
                 <h2>{task.taskTitle}</h2>
+                <UserImage username={task.username} />
                 <p>Task Due: {task.taskDue}</p>
                 {/* <p>{task.id}</p> */}
             </header>
@@ -94,6 +96,7 @@ const Task = props => {
             <div className='task-card'>
                 <header>
                     <h2>{task.taskTitle}</h2>
+                    <UserImage username={task.username} />
                     <h3>{task.username}</h3>
                     <h4>Task Due: {task.taskDue}</h4>
                     <p>{task.id}</p>

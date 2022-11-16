@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import ListItems from "../ListItems";
+import UserImage from '../UserImage';
 
 const TaskList = ({ tasks }) => {
 
@@ -24,6 +25,7 @@ const TaskList = ({ tasks }) => {
                     </Link>
                     <div className='task-content'>
                         <h4><Link to={`/profile/${task.username}`} style={{textDecoration: "none", color: "black"}}>{task.username}</Link>created task on: {task.createdTaskAt}</h4>
+                        <UserImage username={task.username} />
                         <div className='task-desc'>
                             <p>Task Description</p>
                             <p className="task-para">{task.taskContent}</p>

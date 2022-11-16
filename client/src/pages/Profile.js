@@ -5,6 +5,7 @@ import { Navigate, useParams} from 'react-router-dom';
 import TaskList from '../components/TaskList';
 import { QUERY_USER, QUERY_ME_LITE } from '../utils/queries';
 import Auth from '../utils/auth';
+import UserImage from '../components/UserImage';
 
 const Profile = () => {
 
@@ -40,7 +41,8 @@ const Profile = () => {
                </h2>
             </div>
             <div>
-                <h4>{userParam ? `${user.username}'s Information` : ""} </h4>
+                <UserImage username={user.username} />
+                {/* <h4>{userParam ? `${user.username}'s Information` : ""} </h4> */}
                 <p>Username: {user.username}</p>
                 <p>Email: {user.email}</p>
             </div>

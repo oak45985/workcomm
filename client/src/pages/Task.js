@@ -81,13 +81,14 @@ const Task = props => {
                 DELETE TASK
             </button>
         </div>
-        <Link
+        <button style={{textDecoration: "none"}}><Link
             to={'..'}
+            style={{textDecoration: "none", color: "black"}}
             onClick={(e) => {
             e.preventDefault();
             navigate(-1);
         }}
-        >Head Back</Link>
+        >Head Back</Link></button>
     </div>
     }
 
@@ -108,13 +109,14 @@ const Task = props => {
                     <p>{task.createdTaskAt}</p>
                 </div>
             </div>
-            <Link
-        to={'..'}
-        onClick={(e) => {
-          e.preventDefault();
-          navigate(-1);
+            <button style={{textDecoration: "none"}}><Link
+            to={'..'}
+            style={{textDecoration: "none", color: "black"}}
+            onClick={(e) => {
+            e.preventDefault();
+            navigate(-1);
         }}
-      >Head Back</Link>
+        >Head Back</Link></button>
         </div>
     );
 };

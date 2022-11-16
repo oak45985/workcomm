@@ -14,13 +14,13 @@ const UserImage = ({ username }) => {
 
     return (
         <div className='profile-badge-nav-img'>
-            <Link to="/profile">
+            <Link to={`/profile/${user.username}`}>
             <Image
                     cloudName="dmyxg5y4f"
                     publicId={`https://res.cloudinary.com/dmyxg5y4f/image/upload/c_fill,h_50,w_50/r_100/${user.picture}`}
                     >
                 </Image>
-                </Link>
+            </Link>
         </div>
     );
 };
